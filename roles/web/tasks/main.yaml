@@ -1,0 +1,33 @@
+- name: Update cache
+  apt:
+    update_cache: yes
+
+- name: Install latest Nginx
+  apt:
+    name: "{{package_name}}"
+    state: "{{package_state }}"
+    update_cache: yes
+  #notify: my_handler 
+  changed_when : true # even the nginx is install restart it 
+
+#- name: execute the handel after the install 
+# meta: flush_handelers 
+
+- name: start Nginx service
+  service:
+   name: "{{package_name}}"
+   state: started
+   use: service 
+
+- name: Copy index.html from controller to host
+  template:
+    src: "{{ src_file }}"
+    dest: /var/www/html/index.html
+  notify: Copy multiple files handler 
+  changed_when : true
+
+  
+
+ 
+
+ 

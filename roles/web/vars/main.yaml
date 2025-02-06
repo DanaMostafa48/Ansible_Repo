@@ -1,0 +1,8 @@
+package_name : nginx 
+package_state : latest
+my_msg : Hello from Ansible Roles
+src_file: index.html.j2
+file_list:
+  - "file1.txt"
+  - "file2.txt"
+   

@@ -1,33 +1,4 @@
 - name: Install and configure Nginx
   hosts: web_servers
-  tasks:
-    - name: Update cache
-      apt:
-        update_cache: yes
-
-    - name: Install latest Nginx
-      apt:
-        name: nginx
-        state: latest
-        update_cache: yes
-
-    - name: start Nginx service
-      service:
-        name: nginx
-        state: started
-        use: service 
-
-    - name: Copy index.html from controller to host
-      copy:
-        src: ./index.html  
-        dest: /var/www/html/index.html 
-          
-    - name: Restart Nginx service
-      service:
-        name: nginx
-        state: restarted
-        use: service
-
-    # - name: Verify if index.html is accessible
-     
-    #   command: curl -s http://172.17.0.2/
+  roles:
+   - web
